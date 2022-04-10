@@ -46,10 +46,11 @@ class Siswa extends Databases{
     // hapus siswa
     public static function hapusSiswa($get){
         $nisn = $get;
-        $siswa = Databases::query("DELETE FROM tb_siswa WHERE nisn='$nisn");
+        $siswa = Databases::query("DELETE FROM tb_siswa WHERE nisn='$nisn'");
         if($siswa){
             echo"<script>
             alert('data siswa berhasil di hapus');
+            document.location.href= 'data-siswa.php';
             </script>";
         }else{
             echo mysqli_errno(self::connection());

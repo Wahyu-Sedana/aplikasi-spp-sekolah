@@ -89,8 +89,8 @@ if(isset($_GET['nisn'])){
                                         foreach ($lihat2 as $dk) {
 
                                         ?>
-                                            <option value="<?= $dk['id_kelas']; ?>">
-                                                <?php echo $dk['nama_kelas'] ?>
+                                            <option value="<?= $dk['id_kelas']; ?>" <?= $dk['nama_kelas'] == $l['nama_kelas'] ? 'selected':''?>>
+                                                <?= $dk['nama_kelas'] ?>
                                             </option>
                                         <?php } ?>
                                     </select>
@@ -112,7 +112,7 @@ if(isset($_GET['nisn'])){
                                         foreach ($lihat1 as $da) :
 
                                         ?>
-                                            <option value="<?= $da['id_spp']; ?>"><?= $da['tahun']; ?></option>
+                                            <option value="<?= $da['id_spp']; ?>" <?= $da['tahun'] == $l['tahun'] ? 'selected' : ''?>><?= $da['tahun']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
