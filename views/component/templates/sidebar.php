@@ -29,6 +29,8 @@ if (isset($_GET['logout'])) {
 
     <!-- Custom styles for this template-->
     <link href="../../../assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../vendor/datatables/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../../vendor/datatables/dataTables.bootstrap4.min.css">
 
 </head>
 
@@ -99,19 +101,19 @@ if (isset($_GET['logout'])) {
             <?php endif; ?>
 
             <!-- Nav Item - Tables -->
-            <?php if($_SESSION['level'] == 'admin' || $_SESSION['level'] == 'petugas') : ?>
-                <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="../transaksi/history-transaksi.php">
                     <i class="fas fa-fw fa-book"></i>
                     <span>History Transaksi</span></a>
-            </li>
-            <?php endif;?>
+                </li>
 
-            <li class="nav-item">
+            <?php if($_SESSION['level'] == 'admin') : ?>
+                <li class="nav-item">
                 <a class="nav-link" href="../transaksi/generate-laporan.php">
                     <i class="fas fa-fw fa-download"></i>
                     <span>Generate Laporan</span></a>
-            </li>
+                </li>
+            <?php endif;?>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

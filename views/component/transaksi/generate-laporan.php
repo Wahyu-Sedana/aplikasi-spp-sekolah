@@ -15,9 +15,9 @@ $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agust
                 <div class="card-body">
                 <a href="cetak.php" type="button" class="btn btn-primary mb-3" target="blank"><i class="fas fa-print"></i> Cetak</a>
                     <div class="table-responsive">
-                        <table class=" table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class=" table table-bordered" id="dataTable">
                             <thead>
-                                <tr class="text-center bg-dark text-white">
+                                <tr class="text-center">
                                     <th>Nisn</th>
                                     <?php foreach($bulan as $b) : ?>
                                         <th><?= $b ?></th>
@@ -60,10 +60,4 @@ $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agust
                 </div>
             </div>
 </div>
-
-<script>
-    function getLaporan(){
-        window.print();
-    }
-</script>
 <?php include_once '../templates/footer.php'?>

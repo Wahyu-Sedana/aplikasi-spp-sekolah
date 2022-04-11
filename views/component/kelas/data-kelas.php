@@ -11,44 +11,46 @@ if(isset($_GET['id_kelas'])){
                 <div class="container-fluid">
                      <!-- Page Heading -->
                  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Kelas</h1>
+                        <h1 class="h3 mb-4 text-gray-800">Kelas</h1>
                         <a href="tambah-kelas.php" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i
                                 class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</a>
                     </div>
-                    <table class="table table-hover">
-                        <thead class="thead-dark shadow-sm p-3 mb-5 bg-white rounded">
-                            <tr>
+                    <div class="card shadow mb-4">
+                    <div class="card-body">
+                            <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable">
+                        <thead>
+                            <tr class="text-center">
                                 <th scope="col">#</th>
                                 <th scope="col">Nama Kelas</th>
                                 <th scope="col">Kompetensi Keahlian</th>
                                 <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
+                        
+                        <tbody>
                         <?php
                         $lihat = Kelas::fetchAll("SELECT * FROM tb_kelas");
                         $no = 1;
                             foreach($lihat as $l){
 
                         ?>
-                        <tbody class="shadow-sm p-3 mb-5 bg-white rounded">
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="row"><?php echo $no++;?></th>
                                 <td><?php echo $l['nama_kelas'];?></td>
                                 <td><?php echo $l['kompetensi_keahlian'];?></td>
                                 <td class="text-center"><a href="" class="btn btn-info" data-toggle="modal" data-target="#editModal<?= $l['id_kelas']?>" ><i class="fas fa-fw fa-pencil-alt"></i></a>
                                 <a href="" class="btn btn-danger" data-toggle="modal" data-target="#hapusModal<?= $l['id_kelas']?>" ><i class="fas fa-fw fa-trash-alt"></i></a></td>
                             </tr>
-                        </tbody>
-                        
-                        <!--edit Modal -->
+                            <!--edit Modal -->
                         <?php
 
                             if(isset($_POST['submit'])){
                                 Kelas::editKelas($_POST);
                             }
 
-                        ?>
-                        <div class="modal fade" id="editModal<?= $l['id_kelas']?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                            ?>
+                            <div class="modal fade" id="editModal<?= $l['id_kelas']?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -73,9 +75,9 @@ if(isset($_GET['id_kelas'])){
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Hapus Modal -->
-                        <div class="modal fade" id="hapusModal<?= $l['id_kelas']?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                            </div>
+                            <!-- Hapus Modal -->
+                            <div class="modal fade" id="hapusModal<?= $l['id_kelas']?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -90,9 +92,13 @@ if(isset($_GET['id_kelas'])){
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <?php } ?>
+                            </div>
+                            <?php } ?>
+                        </tbody>
                     </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
                 <?php include_once '../templates/footer.php'?>

@@ -14,9 +14,12 @@ if(isset($_GET['nisn'])){
         <h1 class="h3 mb-0 text-gray-800">Siswa</h1>
         <a href="tambah-siswa.php" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</a>
     </div>
-    <table class="table table-hover">
-        <thead class="thead-dark shadow-sm p-3 mb-5 bg-white rounded">
-            <tr>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable">
+        <thead>
+            <tr class="text-center">
                 <th scope="col">#</th>
                 <th scope="col">Nisn</th>
                 <th scope="col">Nis</th>
@@ -27,21 +30,21 @@ if(isset($_GET['nisn'])){
                 <th scope="col" class="text-center">Aksi</th>
             </tr>
         </thead>
-        <?php
-        $no = 1;
-        $lihat = Databases::fetchAll("Call data_siswa()");
-        $lihat1 = Databases::fetchAll("SELECT * FROM tb_spp");
-        $lihat2 = Databases::fetchAll("SELECT * FROM tb_kelas");
+            <tbody>
+            <?php
+                $no = 1;
+                $lihat = Databases::fetchAll("Call data_siswa()");
+                $lihat1 = Databases::fetchAll("SELECT * FROM tb_spp");
+                $lihat2 = Databases::fetchAll("SELECT * FROM tb_kelas");
 
-        if(isset($_POST['submit'])){
-            Siswa::editSiswa($_POST);
-        }
+                if(isset($_POST['submit'])){
+                    Siswa::editSiswa($_POST);
+                }
 
-        foreach ($lihat as $l) {
+                foreach ($lihat as $l) {
 
-        ?>
-            <tbody class="shadow-sm p-3 mb-5 bg-white rounded">
-                <tr>
+                ?>
+                <tr class="text-center">
                     <th scope="row"> <?php echo $no++; ?></th>
                     <td><?php echo $l['nisn']; ?></td>
                     <td><?php echo $l['nis']; ?></td>
@@ -53,8 +56,7 @@ if(isset($_GET['nisn'])){
                         <a href="" class="btn btn-danger" data-toggle="modal" data-target="#hapusModal<?= $l['nisn'] ?>"><i class="fas fa-fw fa-trash-alt"></i></a>
                     </td>
                 </tr>
-            </tbody>
-            <!--Tambah Siswa-->
+                 <!--Tambah Siswa-->
             <div class="modal fade" id="editModal<?= $l['nisn']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -140,7 +142,11 @@ if(isset($_GET['nisn'])){
                             </div>
                         </div>
         <?php } ?>
-    </table>
+            </tbody>
+        </table>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- /.container-fluid -->
 

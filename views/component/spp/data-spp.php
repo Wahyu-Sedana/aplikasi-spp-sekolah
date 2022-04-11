@@ -17,15 +17,19 @@ if(isset($_GET['id_spp'])){
                         <a href="tambah-spp.php" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i
                                 class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</a>
                     </div>
-                    <table class="table table-hover">
-                        <thead class="thead-dark shadow-sm p-3 mb-5 bg-white rounded">
-                            <tr>
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable">
+                        <thead>
+                            <tr class="text-center">
                                 <th scope="col">#</th>
                                 <th scope="col">Tahun</th>
                                 <th scope="col">Nominal</th>
                                 <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
+                        <tbody>
                         <?php
                         $lihat =  Databases::fetchAll("SELECT * FROM tb_spp");
                         $no = 1;
@@ -36,8 +40,7 @@ if(isset($_GET['id_spp'])){
                             foreach($lihat as $l){
 
                         ?>
-                        <tbody class="shadow-sm p-3 mb-5 bg-white rounded">
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="row"><?php echo $no++; ?></th>
                                 <td><?php echo $l['tahun'];?></td>
                                 <td><?php echo $l['nominal'];?></td>
@@ -45,9 +48,7 @@ if(isset($_GET['id_spp'])){
                                 <a href="" class="btn btn-danger" data-toggle="modal" data-target="#hapusModal<?= $l['id_spp'] ?>"><i class="fas fa-fw fa-trash-alt"></i></a>
                                 </td>
                             </tr>
-                        </tbody>
-                       
-                        <!-- Modal -->
+                            <!-- Modal -->
                         <div class="modal fade" id="editModal<?= $l['id_spp'] ?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -94,7 +95,11 @@ if(isset($_GET['id_spp'])){
                                     </div>
                                 </div>
                         <?php } ?>
+                        </tbody>
                     </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
                 <?php include_once '../templates/footer.php'?>

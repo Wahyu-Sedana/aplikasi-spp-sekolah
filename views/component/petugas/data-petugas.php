@@ -15,10 +15,12 @@ if(isset($_GET['id_petugas'])){
                         <h1 class="h3 mb-0 text-gray-800">Petugas</h1>
                         <a href="tambah-petugas.php" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</a>
                     </div>
-
-                    <table class="table table-hover">
-                        <thead class="thead-dark shadow-sm p-3 mb-5 bg-white rounded">
-                            <tr>
+                        <div class="card shadow mb-4">
+                        <div class="card-body">
+                        <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable">
+                        <thead>
+                            <tr class="text-center">
                                 <th scope="col">#</th>
                                 <th scope="col">Username</th>
                                 <th scope="col">Password</th>
@@ -27,14 +29,14 @@ if(isset($_GET['id_petugas'])){
                                 <th scope="col" class="text-center">Aksi</th>
                             </tr>
                         </thead>
-                        <?php
-                        $lihat = Databases::fetchAll("SELECT * FROM tb_petugas");
-                        $no = 1;
-                            foreach ($lihat as $l) {
+                                <tbody>
+                                <?php
+                                $lihat = Databases::fetchAll("SELECT * FROM tb_petugas");
+                                $no = 1;
+                                    foreach ($lihat as $l) {
 
-                        ?>
-                                <tbody class="shadow-sm p-3 mb-5 bg-white rounded">
-                                    <tr>
+                                ?>
+                                    <tr class="text-center">
                                         <td><?php echo $no++; ?></td>
                                         <td><?php echo $l['username']; ?></td>
                                         <td><?php echo $l['password']; ?></td>
@@ -43,8 +45,7 @@ if(isset($_GET['id_petugas'])){
                                         <td class="text-center"><a href="" class="btn btn-info" data-toggle="modal" data-target="#editPetugas<?= $l['id_petugas']?>"><i class="fas fa-fw fa-pencil-alt"></i></a>
                                         <a href="" class="btn btn-danger" data-toggle="modal" data-target="#hapusPetugas<?= $l['id_petugas']?>"><i class="fas fa-fw fa-trash-alt"></i></a></td>
                                     </tr>
-                                </tbody>
-                                <!-- Edit Modal -->
+                                     <!-- Edit Modal -->
                                 <?php
                                 
                                 if(isset($_POST['submit'])){
@@ -117,8 +118,12 @@ if(isset($_GET['id_petugas'])){
                                 </div>
                                         <?php }
                                         ?>
+                                </tbody>
                                     </table>
-                                </div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
                                 <!-- /.container-fluid -->
                 
                 
