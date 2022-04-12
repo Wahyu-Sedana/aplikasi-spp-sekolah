@@ -5,6 +5,14 @@
 
 <?php
 
+if(!isset($_POST['nisn'])){
+    echo "
+    <script>
+        document.location.href = 'transaksi.php'
+    </script>
+";
+}
+
 if(isset($_POST['submit_transaksi'])){
     if($_POST['nisn'] == ""){
         echo "
