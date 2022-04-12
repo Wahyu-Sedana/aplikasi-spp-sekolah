@@ -9,6 +9,7 @@ class Login extends Databases{
         if($siswa == true){
             if($siswa['nisn'] == $username && $siswa['nis'] == $password){
                 $_SESSION['username'] = $siswa['nisn'];
+                $_SESSION['nama'] = $siswa['nama'];
                 $_SESSION['level'] = 'siswa';
                 $_SESSION['login'] = true;
                 header('location: views/component/dashboard/dashboard.php');

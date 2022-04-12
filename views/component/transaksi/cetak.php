@@ -25,15 +25,13 @@ $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agust
     <link rel="stylesheet" href="../../../vendor/datatables/dataTables.bootstrap4.min.css">
 
 </head>
-<body onload="getLaporan()">
+<body >
 
 <div class="container-fluid">
 
-<h1 class="h3 mb-4 text-gray-800">Riwayat Pembayaran</h1>
-
             <div class="card shadow mb-4">
                 <div class="card-body">
-                <a href="cetak.php" type="button" class="btn btn-primary mb-3" target="blank"><i class="fas fa-print"></i> Cetak</a>
+                <a href="cetak.php" onclick="getLaporan()" type="button" class="btn btn-primary mb-3" target="blank"><i class="fas fa-print"></i> Cetak</a>
                     <div class="table-responsive">
                         <table class=" table table-bordered" id="dataTable">
                             <thead>
