@@ -27,8 +27,6 @@ $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agust
                             <tbody>
                                 <?php 
                                     $data = Pembayaran::fetchAll("SELECT * FROM tb_siswa");
-                                    
-                                    $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
                                     foreach($data as $d) :
                                         $data2 = Pembayaran::fetchAll("SELECT * FROM tb_pembayaran WHERE nisn = '{$d['nisn']}'");
@@ -39,7 +37,7 @@ $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agust
                                     <?php foreach($data2 as $d) : ?>
                                         
                                         <td>
-                                            <span class="badge <?= 'badge-success' ?>"><i class="fas fa-check"></i></span>
+                                            <span class="badge badge-success"><i class="fas fa-check"></i></span>
                                         </td>
                                     <?php endforeach; ?>
                                         <?php 
@@ -48,7 +46,7 @@ $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agust
                                             for($i = 1; $i <= $jumlah; $i++) :
                                         ?>
                                             <td>
-                                                <span class="badge <?= 'badge-danger' ?>"><i class="fas fa-times"></i></span>
+                                                <span class="badge badge-danger"><i class="fas fa-times"></i></span>
                                             </td>
                                         <?php endfor; ?>
                                         <?php } ?>
