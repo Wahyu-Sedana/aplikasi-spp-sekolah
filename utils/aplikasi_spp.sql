@@ -25,7 +25,7 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `data_siswa` ()   BEGIN
+CREATE PROCEDURE `data_siswa` ()   BEGIN
 SELECT * FROM tb_siswa INNER JOIN tb_kelas ON tb_siswa.id_kelas=tb_kelas.id_kelas INNER JOIN tb_spp ON tb_siswa.id_spp=tb_spp.id_spp;
 END$$
 
@@ -34,7 +34,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `generate_laporan`
+-- Stand-in structure for view `generate_laporan` 
 -- (See below for the actual view)
 --
 CREATE TABLE `generate_laporan` (
@@ -188,7 +188,7 @@ INSERT INTO `tb_spp` (`id_spp`, `tahun`, `nominal`) VALUES
 --
 DROP TABLE IF EXISTS `generate_laporan`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `generate_laporan`  AS SELECT `tb_siswa`.`nis` AS `nis`, `tb_siswa`.`nama` AS `nama`, `tb_pembayaran`.`bulan_dibayar` AS `bulan_dibayar`, `tb_pembayaran`.`tahun_dibayar` AS `tahun_dibayar`, `tb_kelas`.`nama_kelas` AS `nama_kelas`, `tb_petugas`.`nama_petugass` AS `nama_petugass` FROM (((`tb_siswa` join `tb_pembayaran` on(`tb_siswa`.`nisn` = `tb_pembayaran`.`nisn`)) join `tb_kelas` on(`tb_siswa`.`id_kelas` = `tb_kelas`.`id_kelas`)) join `tb_petugas` on(`tb_pembayaran`.`id_petugas` = `tb_petugas`.`id_petugas`))  ;
+CREATE VIEW `generate_laporan`  AS SELECT `tb_siswa`.`nis` AS `nis`, `tb_siswa`.`nama` AS `nama`, `tb_pembayaran`.`bulan_dibayar` AS `bulan_dibayar`, `tb_pembayaran`.`tahun_dibayar` AS `tahun_dibayar`, `tb_kelas`.`nama_kelas` AS `nama_kelas`, `tb_petugas`.`nama_petugass` AS `nama_petugass` FROM (((`tb_siswa` join `tb_pembayaran` on(`tb_siswa`.`nisn` = `tb_pembayaran`.`nisn`)) join `tb_kelas` on(`tb_siswa`.`id_kelas` = `tb_kelas`.`id_kelas`)) join `tb_petugas` on(`tb_pembayaran`.`id_petugas` = `tb_petugas`.`id_petugas`))  ;
 
 --
 -- Indexes for dumped tables

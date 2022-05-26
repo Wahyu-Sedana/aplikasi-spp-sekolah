@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:80
+    volumes:
+      - ./app/:/var/www/html
+    depends_on:
+      - database
+    container_name: spp-app
+  
+  database:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=rootuser1
+      - MYSQL_PASSWORD=rootpass1
+      - MYSQL_DATABASE=aplikasi_spp
+    container_name: spp-database
+    
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=spp-database
+    depends_on:
+      - database
+    container_name: spp-phpmyadmin
+volumes:
+  database:

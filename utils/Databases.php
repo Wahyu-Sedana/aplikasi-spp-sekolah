@@ -3,12 +3,12 @@
 class Databases{
     private static $host = 'localhost';
     private static $user = 'root';
-    private static $pass = '';
+    private static $pass = 'root';
     private static $db = 'aplikasi_spp';
     public static function connection()
     {
         // membuat koneksi
-        $conn = mysqli_connect(self::$host, self::$user, self::$pass, self::$db)or die(mysqli_connect_error());
+        $conn = new mysqli(self::$host, self::$user, self::$pass, self::$db);
         return $conn;
     }
 
